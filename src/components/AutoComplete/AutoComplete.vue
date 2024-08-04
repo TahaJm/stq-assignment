@@ -41,7 +41,11 @@ const {
     </SearchResults>
     <div class="selected-result">
       <slot v-if="selectedResult" name="selected" :result="selectedResult"></slot>
-      <button v-if="selectedResult" @click="removeSelection" aria-label="Remove selected result">
+      <button
+        v-if="selectedResult"
+        @click="removeSelection"
+        :aria-label="`Remove selected item: ${getResultKey(selectedResult)}`"
+      >
         X
       </button>
     </div>

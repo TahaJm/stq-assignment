@@ -18,7 +18,9 @@ const select = (result: any) => {
           v-else
           v-for="result in props.results"
           :key="props.getResultKey(result)"
-          @mousedown="select(result)"
+          @click="select(result)"
+          @keydown.enter="select(result)"
+          tabindex="0"
         >
           <slot :result="result"></slot>
         </li>

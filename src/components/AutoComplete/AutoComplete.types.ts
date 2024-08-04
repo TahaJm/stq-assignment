@@ -1,7 +1,9 @@
+import type { Book } from '@/types'
+
 export interface AutocompleteProps {
   label: string
   placeholder: string
   fetchResults: (query: string) => void
-  results: any[]
+  results: Book[] | string[]
   getResultKey: (result: any) => string
 }
