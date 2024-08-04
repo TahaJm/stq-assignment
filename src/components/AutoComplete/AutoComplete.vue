@@ -1,44 +1,31 @@
 <script setup lang="ts">
-import SearchInput from '@/components/SearchInput/SearchInput.vue'
-import SearchResults from '@/components/SearchResults/SearchResults.vue'
 import { useAutocomplete } from './AutoComplete.composable'
 import type { AutocompleteProps } from './AutoComplete.types'
+import SearchComponent from '@/components/Search/SearchComponent.vue'
 
 const props = defineProps<AutocompleteProps>()
 
-const {
-  query,
-  isFocused,
-  selectedResult,
-  updateQuery,
-  onFocus,
-  onBlur,
-  handleSelect,
-  removeSelection
-} = useAutocomplete(props.fetchResults)
+const { query, selectedResult, updateQuery, handleSelect, removeSelection } = useAutocomplete(
+  props.fetchResults
+)
 </script>
 
 <template>
   <div class="autocomplete-wrapper">
-    <SearchInput
-      :label="label"
-      :placeholder="placeholder"
-      :onChange="updateQuery"
-      @focus="onFocus"
-      @blur="onBlur"
-      :value="query"
-    />
-    <SearchResults
+    <SearchComponent
+      @select="handleSelect"
       :query="query"
       :results="results"
       :getResultKey="getResultKey"
-      :isVisible="isFocused"
-      @select="handleSelect"
+      :label="label"
+      :onChange="updateQuery"
+      :placeholder="placeholder"
+      :value="query"
     >
       <template #default="{ result }">
         <slot :result="result"></slot>
       </template>
-    </SearchResults>
+    </SearchComponent>
     <div class="selected-result">
       <slot v-if="selectedResult" name="selected" :result="selectedResult"></slot>
       <button
