@@ -1,1 +1,3 @@
 export const MINIMUM_SEARCH_CHARACTER = 3
+
+export const DEBOUNCE_DELAY = 300
