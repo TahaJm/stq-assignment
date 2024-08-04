@@ -11,6 +11,12 @@
   box-shadow: var(--shadow-light);
 }
 
+main{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
 h1 {
   text-align: center;
 }
