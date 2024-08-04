@@ -36,3 +36,6 @@ pnpm test:unit
 ```sh
 pnpm lint
 ```
+
+## Overview
+- **Debounce Functionality**: Although the data is fetched directly from the store in this example, in a real-world scenario, data typically comes from an API. To handle such cases efficiently, debounce functionality is implemented for the search input.
