@@ -39,3 +39,10 @@ pnpm lint
 
 ## Overview
 - **Debounce Functionality**: Although the data is fetched directly from the store in this example, in a real-world scenario, data typically comes from an API. To handle such cases efficiently, debounce functionality is implemented for the search input.
+- **Accessibility**: Ensures that the application is accessible by providing focus management and keyboard navigation.
+- **Separation of Concerns**: Divides the functionality into modular components and composables for better maintainability and readability.
+
+
+
+## State Management
+Pinia is used for state management to handle fetching and storing search results. This provides a centralized store and makes the state predictable and easier to manage.
