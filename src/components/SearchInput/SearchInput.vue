@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineEmits } from 'vue'
 import { useSearchInput } from './SearchInput.composable'
 import type { SearchInputProps } from './SearchInput.types'
 
