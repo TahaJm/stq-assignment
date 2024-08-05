@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { SearchProps } from './Search.types'
 import { useSearch } from './Search.composable'
+import { en } from '@/constants/translations'
 
 const props = defineProps<SearchProps>()
 const emit = defineEmits(['focus', 'blur', 'select'])
@@ -27,7 +28,7 @@ const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEve
     <div class="results-container" :class="{ visible: resultsVisible }">
       <div v-if="props.query.length >= 3">
         <ul>
-          <li v-if="props.results.length === 0">No results found</li>
+          <li v-if="props.results.length === 0">{{ en.noResults }}</li>
           <li
             v-else
             v-for="result in props.results"
@@ -41,7 +42,7 @@ const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEve
           </li>
         </ul>
       </div>
-      <p v-else-if="props.query.length > 0">Type at least 3 characters</p>
+      <p v-else-if="props.query.length > 0">{{en.notEnoughCharacter}}</p>
     </div>
   </div>
 </template>

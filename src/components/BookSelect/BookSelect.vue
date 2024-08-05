@@ -2,6 +2,7 @@
 import { useBookStore } from '@/stores/bookStore'
 import Autocomplete from '@/components/AutoComplete/AutoComplete.vue'
 import type { Book } from '@/types'
+import { en } from '@/constants/translations'
 
 const bookStore = useBookStore()
 
@@ -10,8 +11,8 @@ const getBookResultKey = (result: Book) => result.title
 
 <template>
   <Autocomplete
-    label="Search Books"
-    placeholder="Search books..."
+    :label="en.bookInputLabel"
+    :placeholder="en.cityInputPlaceholder"
     :fetchResults="bookStore.filterBooks"
     :results="bookStore.bookResults"
     :getResultKey="getBookResultKey"

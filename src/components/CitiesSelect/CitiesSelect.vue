@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Autocomplete from '@/components/AutoComplete/AutoComplete.vue'
 import { useCityStore } from '@/stores/cityStore'
+import { en } from '@/constants/translations'
 
 const cityStore = useCityStore()
 const getCityResultKey = (result: string) => result
@@ -8,8 +9,8 @@ const getCityResultKey = (result: string) => result
 
 <template>
   <Autocomplete
-    label="Search Cities"
-    placeholder="Search cities..."
+    :label="en.cityInputLabel"
+    :placeholder="en.cityInputPlaceholder"
     :fetchResults="cityStore.filterCities"
     :results="cityStore.cityResults"
     :getResultKey="getCityResultKey"
