@@ -42,7 +42,7 @@ pnpm lint
 - **Accessibility**: Ensures that the application is accessible by providing focus management and keyboard navigation.
 - **Separation of Concerns**: Divides the functionality into modular components and composables for better maintainability and readability.
 - added some accessibility features such as selecting result with enter or hiding results with escape and test it with screen reader
-
+- **Translation Handling**: Because this project was primarily a showcase and did not require extensive translations, I decided not to add libraries like i18n. Instead, I handled the translations using constants.
 ## Further improvements
 - Further enhance accessibility by adding more ARIA roles and attributes where applicable.
 - Expand the unit test coverage to include more components and edge cases.
