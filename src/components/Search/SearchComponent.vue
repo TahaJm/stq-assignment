@@ -6,6 +6,9 @@ import { en } from '@/constants/translations'
 const props = defineProps<SearchProps>()
 const emit = defineEmits(['focus', 'blur', 'select'])
 
+const vFocus = {
+  mounted: (el: HTMLInputElement) => el.focus()
+}
 const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEvent, value } =
   useSearch(props, emit)
 </script>
@@ -23,6 +26,7 @@ const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEve
         :placeholder="props.placeholder"
         ref="input"
         class="search-input"
+        v-focus
       />
     </div>
     <div class="results-container" :class="{ visible: resultsVisible }">
@@ -42,7 +46,7 @@ const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEve
           </li>
         </ul>
       </div>
-      <p v-else-if="props.query.length > 0">{{en.notEnoughCharacter}}</p>
+      <p v-else-if="props.query.length > 0">{{ en.notEnoughCharacter }}</p>
     </div>
   </div>
 </template>
