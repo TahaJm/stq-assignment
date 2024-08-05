@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useBookStore } from '@/stores/bookStore'
 import Autocomplete from '@/components/AutoComplete/AutoComplete.vue'
+import type { Book } from '@/types'
 
 const bookStore = useBookStore()
 
-const getBookResultKey = (result: any) => result.title
+const getBookResultKey = (result: Book) => result.title
 </script>
 
 <template>

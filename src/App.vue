@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import BookSearch from '@/components/BookSearch/BookSearch.vue'
-import CitiesSearch from '@/components/CitiesSearch/CitiesSearch.vue'
+import CitiesSelect from '@/components/CitiesSelect/CitiesSelect.vue'
+import BookSelect from '@/components/BookSelect/BookSelect.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    CitiesSearch,
-    BookSearch
+    BookSelect,
+    CitiesSelect
   }
 })
 </script>
@@ -17,8 +17,7 @@ export default defineComponent({
     <h1>City and Book Search</h1>
   </header>
   <main>
-    <BookSearch />
-    <CitiesSearch />
+    <BookSelect />
+    <CitiesSelect />
   </main>
 </template>
-

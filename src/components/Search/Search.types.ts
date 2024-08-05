@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 type Results = Book | string
 export interface SearchProps {
   query: string
-  results: Results[]
+  results: any
   getResultKey: (result: Results) => string
   label: string
   placeholder: string

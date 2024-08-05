@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { SearchProps } from './Search.types'
 import { useSearch } from './Search.composable'
-import './Search.module.css'
-import { MINIMUM_SEARCH_CHARACTER } from '@/constants/configs'
+
 const props = defineProps<SearchProps>()
 const emit = defineEmits(['focus', 'blur', 'select'])
 
@@ -26,7 +25,7 @@ const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEve
       />
     </div>
     <div class="results-container" :class="{ visible: resultsVisible }">
-      <div v-if="props.query.length >= MINIMUM_SEARCH_CHARACTER">
+      <div v-if="props.query.length >= 3">
         <ul>
           <li v-if="props.results.length === 0">No results found</li>
           <li
@@ -46,3 +45,31 @@ const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEve
     </div>
   </div>
 </template>
+
+<style scoped>
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.results-container {
+  position: absolute;
+  width: 100%;
+  max-height: 300px;
+  background: var(--color-background);
+  border-radius: var(--spacing-xs);
+  box-shadow: var(--shadow-light);
+  overflow-y: auto;
+  z-index: 1;
+  visibility: hidden;
+}
+
+.results-container.visible {
+  visibility: visible;
+}
+</style>
