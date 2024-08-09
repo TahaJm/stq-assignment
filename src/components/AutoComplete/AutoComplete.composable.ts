@@ -11,7 +11,6 @@ export function useAutocomplete(fetchResults: (query: string) => void) {
 
   const handleSelect = (result: any) => {
     selectedResult.value = result
-    query.value = ''
   }
 
   const removeSelection = () => {

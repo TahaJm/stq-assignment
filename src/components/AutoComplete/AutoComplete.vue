@@ -14,13 +14,12 @@ const { query, selectedResult, updateQuery, handleSelect, removeSelection } = us
   <div class="autocomplete-wrapper">
     <SearchComponent
       @select="handleSelect"
+      @debounceQueryChanged="updateQuery"
       :query="query"
       :results="results"
       :getResultKey="getResultKey"
       :label="label"
-      :onChange="updateQuery"
       :placeholder="placeholder"
-      :value="query"
     >
       <template #default="{ result }">
         <slot :result="result"></slot>

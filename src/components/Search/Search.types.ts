@@ -7,6 +7,4 @@ export interface SearchProps {
   getResultKey: (result: Results) => string
   label: string
   placeholder: string
-  onChange: (query: string) => void
-  value: string
 }

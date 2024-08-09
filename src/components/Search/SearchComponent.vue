@@ -2,15 +2,22 @@
 import type { SearchProps } from './Search.types'
 import { useSearch } from './Search.composable'
 import { en } from '@/constants/translations'
+import { MINIMUM_SEARCH_CHARACTER } from '@/constants/configs'
 
 const props = defineProps<SearchProps>()
-const emit = defineEmits(['focus', 'blur', 'select'])
+const emit = defineEmits(['focus', 'select', 'debounceQueryChanged'])
 
 const vFocus = {
   mounted: (el: HTMLInputElement) => el.focus()
 }
-const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEvent, value } =
-  useSearch(props, emit)
+const {
+  handleInput,
+  handleFocusEvent,
+  resultsVisible,
+  handleBlurEvent,
+  value,
+  handleSelectResult
+} = useSearch(props, emit)
 </script>
 
 <template>
@@ -22,23 +29,21 @@ const { handleInput, handleFocusEvent, handleBlur, resultsVisible, handleBlurEve
         v-model="value"
         @input="handleInput"
         @focus="handleFocusEvent"
-        @blur="handleBlur"
         :placeholder="props.placeholder"
-        ref="input"
         class="search-input"
         v-focus
       />
     </div>
     <div class="results-container" :class="{ visible: resultsVisible }">
-      <div v-if="props.query.length >= 3">
+      <div v-if="value.length >= MINIMUM_SEARCH_CHARACTER">
         <ul>
           <li v-if="props.results.length === 0">{{ en.noResults }}</li>
           <li
             v-else
             v-for="result in props.results"
             :key="props.getResultKey(result)"
-            @click="emit('select', result)"
-            @keydown.enter="emit('select', result)"
+            @click="handleSelectResult(result)"
+            @keydown.enter="handleSelectResult(result)"
             @keydown.esc="handleBlurEvent"
             tabindex="0"
           >

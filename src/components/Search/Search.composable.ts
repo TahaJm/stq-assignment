@@ -4,19 +4,15 @@ import { DEBOUNCE_DELAY } from '@/constants/configs'
 import type { SearchProps } from './Search.types'
 
 export function useSearch(props: SearchProps, emit: any) {
-  const value = ref(props.value)
+  const value = ref('')
   const resultsVisible = ref(false)
 
   const debouncedOnChange = debounce((query: string) => {
-    emit('change', query)
+    emit('debounceQueryChanged', query)
   }, DEBOUNCE_DELAY)
 
   const handleInput = () => {
     debouncedOnChange(value.value)
-  }
-
-  const handleBlur = () => {
-    emit('blur')
   }
 
   const handleDocumentClick = (event: MouseEvent) => {
@@ -33,6 +29,11 @@ export function useSearch(props: SearchProps, emit: any) {
     resultsVisible.value = false
   }
 
+  const handleSelectResult = (result: any) => {
+    emit('select', result)
+    value.value = ''
+  }
+
   onMounted(() => {
     document.addEventListener('click', handleDocumentClick)
   })
@@ -40,12 +41,6 @@ export function useSearch(props: SearchProps, emit: any) {
   onUnmounted(() => {
     document.removeEventListener('click', handleDocumentClick)
   })
-  watch(
-    () => props.value,
-    (newValue) => {
-      value.value = newValue
-    }
-  )
 
-  return { value, handleInput, handleBlur, handleFocusEvent, resultsVisible, handleBlurEvent }
+  return { value, handleInput, handleFocusEvent, resultsVisible, handleBlurEvent, handleSelectResult }
 }
