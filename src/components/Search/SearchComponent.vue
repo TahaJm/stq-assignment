@@ -17,7 +17,7 @@ const {
   handleBlurEvent,
   value,
   handleSelectResult
-} = useSearch(props, emit)
+} = useSearch(emit)
 </script>
 
 <template>

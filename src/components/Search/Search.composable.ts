@@ -1,9 +1,8 @@
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { debounce } from '@/utils'
 import { DEBOUNCE_DELAY } from '@/constants/configs'
-import type { SearchProps } from './Search.types'
 
-export function useSearch(props: SearchProps, emit: any) {
+export function useSearch(emit: any) {
   const value = ref('')
   const resultsVisible = ref(false)
 
@@ -42,5 +41,12 @@ export function useSearch(props: SearchProps, emit: any) {
     document.removeEventListener('click', handleDocumentClick)
   })
 
-  return { value, handleInput, handleFocusEvent, resultsVisible, handleBlurEvent, handleSelectResult }
+  return {
+    value,
+    handleInput,
+    handleFocusEvent,
+    resultsVisible,
+    handleBlurEvent,
+    handleSelectResult
+  }
 }
